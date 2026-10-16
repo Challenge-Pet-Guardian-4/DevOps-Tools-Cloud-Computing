@@ -78,7 +78,7 @@ O diagrama a seguir detalha a jornada de ponta a ponta, conectando as personas (
 
  [🧑‍💻 Desenvolvedor] 
          │
-         │ [1] git push origin develop / main
+         │ [1] git push origin main
          ▼
  ┌────────────────────────────────────────┐
  │   Azure Repos / GitHub Repository      │
@@ -146,7 +146,7 @@ O diagrama a seguir detalha a jornada de ponta a ponta, conectando as personas (
 
 ### 🔢 Descrição Detalhada das 8 Etapas da Esteira:
 
-1. **Gatilho de Código (`git push`):** O desenvolvedor envia novos commits para as branches monitoradas (`main` ou `develop`).
+1. **Gatilho de Código (`git push`):** O desenvolvedor envia novos commits para a branch monitorada (`main`).
 2. **Disparo Automático do CI:** O Azure DevOps detecta a alteração via webhook e inicia imediatamente a execução da pipeline `azure-pipelines.yml`.
 3. **Inicialização do Agente Self-Hosted:** O agente local (registrado no pool `Default`) aloca a execução do job `Compilação Gradle e Testes` em ambiente com JDK 21 e Gradle Wrapper.
 4. **Execução de Build e Testes:** O comando `gradlew.bat clean test bootJar` compila o código-fonte, gera as chaves assimétricas RSA dinamicamente e executa **123 testes JUnit** cobrindo segurança RBAC, regras de negócio e integração de banco de dados.
