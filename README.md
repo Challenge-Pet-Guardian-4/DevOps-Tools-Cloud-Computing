@@ -86,7 +86,7 @@ O diagrama a seguir detalha a jornada de ponta a ponta, conectando as personas (
                      │ [2] Gatilho Automático (CI Trigger)
                      ▼
  ┌─────────────────────────────────────────────────────────────────────────────────┐
- │ AZURE DEVOPS PIPELINES (Sprint 4 – Azure DevOps)                                 │
+ │ AZURE DEVOPS PIPELINES (Sprint 4 – Azure DevOps)                                │
  │                                                                                 │
  │   ┌─────────────────────────────────────────────────────────────────────────┐   │
  │   │ ETAPA 1: CI (Continuous Integration) — Agente Self-Hosted (Pool Default)│   │
@@ -101,7 +101,7 @@ O diagrama a seguir detalha a jornada de ponta a ponta, conectando as personas (
  │   │       `PublishTestResults@2` -> Relatório XML no Azure DevOps           │   │
  │   │                                                                         │   │
  │   │   [6] Empacotamento e Publicação de Artefato:                           │   │
- │   │       `PublishBuildArtifacts@1` -> Gera container de artefato: drop/app.jar│
+ │   │    `PublishBuildArtifacts@1` -> Gera container de artefato: drop/app.jar│   |
  │   └────────────────────────────────────┬────────────────────────────────────┘   │
  │                                        │                                        │
  │                                        │ [7] Gatilho de Deploy (CD Automático)  │
@@ -121,7 +121,7 @@ O diagrama a seguir detalha a jornada de ponta a ponta, conectando as personas (
  │ MICROSOFT AZURE CLOUD (Resource Group: rg-petguardian | Região: East US)        │
  │                                                                                 │
  │   ┌─────────────────────────────────────────────────────────────────────────┐   │
- │   │ Azure App Service: `app-petguardian-01bd2f0c` (Plano: asp-petguardian B1)│   │
+ │   │ Azure App Service: `app-petguardian-01bd2f0c` (Plano:asp-petguardian B1)│   │
  │   │ Runtime: Java 17 Java SE (Linux)                                        │   │
  │   │ Startup: `java -jar /home/site/wwwroot/app.jar`                         │   │
  │   │ Porta: 8080 (WEBSITES_PORT=8080)                                        │   │
