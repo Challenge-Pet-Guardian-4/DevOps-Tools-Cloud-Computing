@@ -2,7 +2,7 @@
 
 > **FIAP Challenge 2026 — 2º Ano (ADS) | 2º Semestre — 4ª Sprint**  
 > **Disciplina:** DevOps Tools & Cloud Computing  
-> **Professor:** Leonardo Ruiz Ortiz
+> **Professor:** Antonio Sergio Rodrigues Figueiredo
 
 <p align="left">
   <img src="https://img.shields.io/badge/Cloud-Microsoft_Azure-0078D4?logo=microsoftazure&logoColor=white" alt="Azure" />
@@ -181,7 +181,7 @@ O ambiente no Azure DevOps foi configurado seguindo rigorosamente os padrões so
 
 * **Nome da Organização:** `PetGuardian` (URL: `https://dev.azure.com/PetGuardian`)
 * **Nome do Projeto (Project Name):** `Sprint 4 – Azure DevOps`
-* **Descrição do Projeto:** `Projeto para entrega da Sprint 4 do professor Leonardo Ruiz Ortiz`
+* **Descrição do Projeto:** `Projeto para entrega da Sprint 4 do professor Antonio Sergio Rodrigues Figueiredo`
 * **Visibilidade:** `Private`
 * **Controle de Versão:** `Git`
 * **Processo de Itens de Trabalho (Work Item Process):** `Agile`
