@@ -18,12 +18,12 @@ export MSYS_NO_PATHCONV=1
 RESOURCE_GROUP="rg-petguardian"
 LOCATION="eastus" # Região com alta disponibilidade e suporte a F1 (Free) / B1 (Basic)
 PLAN_NAME="asp-petguardian"
-SKU="F1" # B1 recomendado para Java Spring Boot (ou F1 para Free)
+SKU="B1" # B1 Dedicado para Java 17 Spring Boot (1.75 GB RAM)
 
 # Sufixo dinâmico único baseado na assinatura da Azure para evitar conflito de nomes
 SUB_SUFFIX=$(az account show --query 'id' -o tsv 2>/dev/null | tr -d '-' | cut -c1-8)
 if [ -z "$SUB_SUFFIX" ]; then
-  SUB_SUFFIX="enzo"
+  SUB_SUFFIX="01bd2f0c"
 fi
 WEB_APP_NAME="app-petguardian-${SUB_SUFFIX}"
 
