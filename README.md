@@ -217,7 +217,7 @@ chmod +x script-provisionamento.sh
 ### Recursos Provisionados pelo Script:
 1. **Resource Group:** `rg-petguardian` (Região: `eastus`).
 2. **App Service Plan:** `asp-petguardian` em Linux com SKU **B1** (Basic dedicado — 1.75 GB RAM, sem limite de horas diárias).
-3. **Azure Web App:** `app-petguardian-01bd2f0c` configurado com runtime nativo `JAVA:21-java21`.
+3. **Azure Web App:** `app-petguardian-01bd2f0c` configurado com runtime nativo `JAVA|21-java21`.
 4. **Configuração Segura de App Settings:** Injeção das portas (`PORT=8080`, `WEBSITES_PORT=8080`) e URLs base de infraestrutura. Segredos de banco (`ORACLE_PASSWORD`, `MONGODB_URI`, `ADMIN_BCRYPT_HASH`) são parametrizados via variáveis de ambiente da sessão ou gerenciados no Application Settings do Azure / Pipeline Secrets do Azure DevOps (DevSecOps).
 
 ---

@@ -68,7 +68,7 @@ az webapp create \
   --name "$WEB_APP_NAME" \
   --resource-group "$RESOURCE_GROUP" \
   --plan "$PLAN_NAME" \
-  --runtime "JAVA:21-java21" \
+  --runtime "JAVA|21-java21" \
   --output table
 
 # -----------------------------------------------------------------------------
