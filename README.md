@@ -7,7 +7,7 @@
 <p align="left">
   <img src="https://img.shields.io/badge/Cloud-Microsoft_Azure-0078D4?logo=microsoftazure&logoColor=white" alt="Azure" />
   <img src="https://img.shields.io/badge/CI%2FCD-Azure_Pipelines-0078D7?logo=azuredevops&logoColor=white" alt="Azure DevOps" />
-  <img src="https://img.shields.io/badge/Java-17_LTS-007396?logo=openjdk&logoColor=white" alt="Java 17 LTS" />
+  <img src="https://img.shields.io/badge/Java-21_LTS-007396?logo=openjdk&logoColor=white" alt="Java 21 LTS" />
   <img src="https://img.shields.io/badge/Spring_Boot-4.1.1-6DB33F?logo=springboot&logoColor=white" alt="Spring Boot 4.1.1" />
   <img src="https://img.shields.io/badge/Build-Gradle-02303A?logo=gradle&logoColor=white" alt="Gradle" />
   <img src="https://img.shields.io/badge/Database-Oracle_19c-F80000?logo=oracle&logoColor=white" alt="Oracle Database 19c" />
@@ -22,6 +22,7 @@
 | Recurso | Descrição | Link |
 |---|---|---|
 | 🌐 **API em Produção (Azure Web App)** | Endpoint base do App Service provisionado | https://app-petguardian-01bd2f0c.azurewebsites.net |
+| 🛡️ **Console Web Admin (Produção)** | Interface web visual para administração e auditoria | https://app-petguardian-01bd2f0c.azurewebsites.net/admin |
 | 📖 **Swagger UI Interativo (Produção)** | Console interativo OpenAPI 3.1 com todos os endpoints | https://app-petguardian-01bd2f0c.azurewebsites.net/swagger-ui/index.html |
 | 🩺 **Actuator Health (Observabilidade)** | Healthcheck em tempo real (Oracle + MongoDB + Liveness) | https://app-petguardian-01bd2f0c.azurewebsites.net/actuator/health |
 | 🚀 **Projeto no Azure DevOps** | Organização PetGuardian / Sprint 4 – Azure DevOps | https://dev.azure.com/PetGuardian/Sprint%204%20%E2%80%93%20Azure%20DevOps |
@@ -55,7 +56,7 @@ O **PetGuardian** é uma plataforma corporativa para governança colaborativa de
 
 | Componente | Tecnologia | Finalidade |
 |---|---|---|
-| **Linguagem & Runtime** | Java 17 LTS | Linguagem oficial de backend |
+| **Linguagem & Runtime** | Java 21 LTS | Linguagem oficial de backend (LTS) |
 | **Framework Base** | Spring Boot 4.1.1 | Ecossistema REST corporativo com Spring Data, Security e Actuator |
 | **Gerenciador de Build** | Gradle 8.x (Gradle Wrapper) | Automação determinística de compilação, geração de chaves RSA e testes |
 | **Banco de Dados Relacional** | Oracle Database 19c (FIAP Cloud) | Persistência relacional em 3FN, triggers e Stored Procedures (`PKG_PETGUARDIAN`) |
@@ -122,7 +123,7 @@ O diagrama a seguir detalha a jornada de ponta a ponta, conectando as personas (
  │                                                                                 │
  │   ┌─────────────────────────────────────────────────────────────────────────┐   │
  │   │ Azure App Service: `app-petguardian-01bd2f0c` (Plano:asp-petguardian B1)│   │
- │   │ Runtime: Java 17 Java SE (Linux)                                        │   │
+ │   │ Runtime: Java 21 Java SE (Linux)                                        │   │
  │   │ Startup: `java -jar /home/site/wwwroot/app.jar`                         │   │
  │   │ Porta: 8080 (WEBSITES_PORT=8080)                                        │   │
  │   └───────────────────┬─────────────────────────────────┬───────────────────┘   │
@@ -216,8 +217,8 @@ chmod +x script-provisionamento.sh
 ### Recursos Provisionados pelo Script:
 1. **Resource Group:** `rg-petguardian` (Região: `eastus`).
 2. **App Service Plan:** `asp-petguardian` em Linux com SKU **B1** (Basic dedicado — 1.75 GB RAM, sem limite de horas diárias).
-3. **Azure Web App:** `app-petguardian-01bd2f0c` configurado com runtime nativo `JAVA:17-java17`.
-4. **Configuração de App Settings:** Injeção das variáveis de ambiente de banco de dados e porta de escuta (`PORT=8080` e `WEBSITES_PORT=8080`).
+3. **Azure Web App:** `app-petguardian-01bd2f0c` configurado com runtime nativo `JAVA:21-java21`.
+4. **Configuração Segura de App Settings:** Injeção das portas (`PORT=8080`, `WEBSITES_PORT=8080`) e URLs base de infraestrutura. Segredos de banco (`ORACLE_PASSWORD`, `MONGODB_URI`, `ADMIN_BCRYPT_HASH`) são parametrizados via variáveis de ambiente da sessão ou gerenciados no Application Settings do Azure / Pipeline Secrets do Azure DevOps (DevSecOps).
 
 ---
 
