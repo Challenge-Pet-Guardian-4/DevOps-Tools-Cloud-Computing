@@ -70,6 +70,10 @@ O **PetGuardian** é uma plataforma corporativa para governança colaborativa de
 
 ## 2. 🏛️ Arquitetura da Solução & Diagrama do Fluxo CI/CD
 
+<p align="center">
+  <img src="./docs/challenge4-petguardian-diagrama.png" alt="Arquitetura Cloud e Fluxo CI/CD PetGuardian" width="100%" />
+</p>
+
 O diagrama a seguir detalha a jornada de ponta a ponta, conectando as personas (**Desenvolvedor** e **Usuário Final**), os componentes de computação e dados, e as 8 etapas numeradas da esteira de Integração e Entrega Contínuas (**CI/CD**):
 
 ```
