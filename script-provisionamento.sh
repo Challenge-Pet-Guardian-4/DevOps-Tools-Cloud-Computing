@@ -18,21 +18,19 @@ export MSYS_NO_PATHCONV=1
 RESOURCE_GROUP="rg-petguardian"
 LOCATION="eastus" # Região com alta disponibilidade e suporte a F1 (Free) / B1 (Basic)
 PLAN_NAME="asp-petguardian"
-SKU="B1" # B1 Dedicado para Java 17 Spring Boot (1.75 GB RAM)
+SKU="B1" # B1 Dedicado para Java Spring Boot (1.75 GB RAM)
 
-# Sufixo dinâmico único baseado na assinatura da Azure para evitar conflito de nomes
-SUB_SUFFIX=$(az account show --query 'id' -o tsv 2>/dev/null | tr -d '-' | cut -c1-8)
-if [ -z "$SUB_SUFFIX" ]; then
-  SUB_SUFFIX="01bd2f0c"
-fi
-WEB_APP_NAME="app-petguardian-${SUB_SUFFIX}"
+# Nome do Azure Web App alinhado com o azure-pipelines.yml
+WEB_APP_NAME="${WEB_APP_NAME:-app-petguardian-01bd2f0c}"
 
-# Credenciais e Conexões de Banco de Dados (Oracle FIAP + MongoDB Atlas)
-ORACLE_URL="jdbc:oracle:thin:@//oracle.fiap.com.br:1521/orcl"
-ORACLE_USER="RM561432"
-ORACLE_PASS="301006"
-MONGO_URI="mongodb+srv://enzookuizumifiap_db_user:PAEdhlPTE5QRMzjC@petguardian.agoderb.mongodb.net/petguardian?retryWrites=true&w=majority"
-ADMIN_HASH='$2a$10$CGKqNEY043BjTqp9faNVoOodCnu3uU.rLNuuHR4XqwZTXjuShRf0G'
+# Credenciais e Conexões de Banco de Dados (Injetadas com segurança via variáveis de ambiente)
+# Em conformidade com as regras da Sprint 4 da FIAP e boas práticas de DevSecOps,
+# credenciais e senhas NUNCA devem ser versionadas em texto claro no Git.
+ORACLE_URL="${ORACLE_URL:-jdbc:oracle:thin:@//oracle.fiap.com.br:1521/orcl}"
+ORACLE_USER="${ORACLE_USER:-RM561432}"
+ORACLE_PASS="${ORACLE_PASSWORD:-}"
+MONGO_URI="${MONGODB_URI:-}"
+ADMIN_HASH="${ADMIN_BCRYPT_HASH:-}"
 
 echo ""
 echo "================================================================="
@@ -40,7 +38,7 @@ echo "⚙️  INICIANDO PROVISIONAMENTO DA INFRAESTRUTURA — SPRINT 4"
 echo "  Resource Group:   $RESOURCE_GROUP"
 echo "  Região:           $LOCATION"
 echo "  App Service Plan: $PLAN_NAME ($SKU Linux)"
-echo "  Azure Web App:    $WEB_APP_NAME (Runtime Java 17)"
+echo "  Azure Web App:    $WEB_APP_NAME (Runtime Java 21)"
 echo "================================================================="
 
 # -----------------------------------------------------------------------------
@@ -77,15 +75,15 @@ az appservice plan create \
   --output table
 
 # -----------------------------------------------------------------------------
-# 3. Criação do Azure Web App (Runtime Java 17 Java SE)
+# 3. Criação do Azure Web App (Runtime Java 21 Java SE)
 # -----------------------------------------------------------------------------
 echo ""
-echo "▶ [3/4] Criando Azure Web App ($WEB_APP_NAME) com Java 17..."
+echo "▶ [3/4] Criando Azure Web App ($WEB_APP_NAME) com Java 21..."
 az webapp create \
   --name "$WEB_APP_NAME" \
   --resource-group "$RESOURCE_GROUP" \
   --plan "$PLAN_NAME" \
-  --runtime "JAVA:17-java17" \
+  --runtime "JAVA:21-java21" \
   --output table
 
 # -----------------------------------------------------------------------------
@@ -93,18 +91,34 @@ az webapp create \
 # -----------------------------------------------------------------------------
 echo ""
 echo "▶ [4/4] Configurando Variáveis de Ambiente no Web App (Protegidas)..."
+
+# Configura portas e URL base de infraestrutura
 az webapp config appsettings set \
   --resource-group "$RESOURCE_GROUP" \
   --name "$WEB_APP_NAME" \
   --settings \
-    ORACLE_URL="$ORACLE_URL" \
-    ORACLE_USER="$ORACLE_USER" \
-    ORACLE_PASSWORD="$ORACLE_PASS" \
-    MONGODB_URI="$MONGO_URI" \
-    ADMIN_BCRYPT_HASH="$ADMIN_HASH" \
     PORT="8080" \
     WEBSITES_PORT="8080" \
+    ORACLE_URL="$ORACLE_URL" \
+    ORACLE_USER="$ORACLE_USER" \
   --output table
+
+# Se as credenciais estiverem disponíveis no ambiente da execução, aplica no Web App
+if [ -n "$ORACLE_PASS" ] && [ -n "$MONGO_URI" ]; then
+  az webapp config appsettings set \
+    --resource-group "$RESOURCE_GROUP" \
+    --name "$WEB_APP_NAME" \
+    --settings \
+      ORACLE_PASSWORD="$ORACLE_PASS" \
+      MONGODB_URI="$MONGO_URI" \
+      ADMIN_BCRYPT_HASH="$ADMIN_HASH" \
+    --output table
+  echo "✅ Credenciais de banco aplicadas com sucesso via variáveis de ambiente."
+else
+  echo "ℹ️  Nota: Segredos de banco (ORACLE_PASSWORD, MONGODB_URI) devem ser gerenciados"
+  echo "    diretamente no Portal do Azure (Configuration > Application settings)"
+  echo "    ou via Pipeline Secrets do Azure DevOps para conformidade com DevSecOps."
+fi
 
 # -----------------------------------------------------------------------------
 # 5. Informações Finais
