@@ -28,6 +28,7 @@
 | 🚀 **Projeto no Azure DevOps** | Organização PetGuardian / Sprint 4 – Azure DevOps | https://dev.azure.com/PetGuardian/Sprint%204%20%E2%80%93%20Azure%20DevOps |
 | 💻 **Repositório GitHub (DevOps)** | Repositório com IaC e esteira de CI/CD | https://github.com/Challenge-Pet-Guardian-4/DevOps-Tools-Cloud-Computing |
 | ☕ **Repositório GitHub (Java Advanced)** | Código-fonte da aplicação Spring Boot e 123 testes | https://github.com/Challenge-Pet-Guardian-4/Java-Advanced |
+| 📄 **Documentação Oficial (PDF)** | Relatório técnico consolidado da Sprint 4 (DevOps & Cloud) | [Documentação DevOps Sprint 4 - Pet Guardian.pdf](./docs/Documenta%C3%A7%C3%A3o%20DevOps%20Sprint%204%20-%20Pet%20Guardian.pdf) |
 | 🎥 **Vídeo Demonstrativo (YouTube)** | Apresentação em vídeo com passo a passo exigido | *Link do YouTube a ser anexado* |
 
 ---
@@ -248,9 +249,13 @@ Para assegurar nota máxima sem sofrer os descontos previstos na tabela de penal
 
 ```
 DevOps-Tools-Cloud-Computing/
-├── azure-pipelines.yml          # Definição oficial em YAML da esteira de CI/CD (Build, Testes, Artefato e Deploy)
-├── script-provisionamento.sh    # Script Bash (Azure CLI) para criação do RG, App Service Plan e Web App
-└── README.md                    # Documentação técnica completa da Sprint 4
+├── docs/                                                 # Documentação e diagramas arquiteturais
+│   ├── Documentação DevOps Sprint 4 - Pet Guardian.pdf  # Documento técnico oficial consolidado em PDF
+│   ├── challenge4-petguardian-diagrama.drawio           # Diagrama em formato editável Draw.io
+│   └── challenge4-petguardian-diagrama.png              # Diagrama de arquitetura em nuvem renderizado
+├── azure-pipelines.yml                                   # Definição oficial em YAML da esteira de CI/CD (Build, Testes, Artefato e Deploy)
+├── script-provisionamento.sh                             # Script Bash (Azure CLI) para criação do RG, App Service Plan e Web App
+└── README.md                                             # Documentação técnica completa da Sprint 4
 ```
 
 ---
