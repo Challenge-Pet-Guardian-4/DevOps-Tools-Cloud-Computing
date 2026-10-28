@@ -29,7 +29,12 @@
 | 💻 **Repositório GitHub (DevOps)** | Repositório com IaC e esteira de CI/CD | https://github.com/Challenge-Pet-Guardian-4/DevOps-Tools-Cloud-Computing |
 | ☕ **Repositório GitHub (Java Advanced)** | Código-fonte da aplicação Spring Boot e 123 testes | https://github.com/Challenge-Pet-Guardian-4/Java-Advanced |
 | 📄 **Documentação Oficial (PDF)** | Relatório técnico consolidado da Sprint 4 (DevOps & Cloud) | [Documentação DevOps Sprint 4 - Pet Guardian.pdf](./docs/Documenta%C3%A7%C3%A3o%20DevOps%20Sprint%204%20-%20Pet%20Guardian.pdf) |
-| 🎥 **Vídeo Demonstrativo (YouTube)** | Apresentação em vídeo com passo a passo exigido | *Link do YouTube a ser anexado* |
+
+---
+
+## 🔗 Vídeo de Demonstração (Sprint 4)
+
+[Video DevOps - Challenge Pet Guardian Sprint 4](https://youtu.be/_cSGLX40Stw?si=lm8aUnIo8yqQQce6)
 
 ---
 
