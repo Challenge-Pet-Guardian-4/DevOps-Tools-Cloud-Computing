@@ -27,7 +27,7 @@
 | 🩺 **Actuator Health (Observabilidade)** | Healthcheck em tempo real (Oracle + MongoDB + Liveness) | https://app-petguardian-01bd2f0c.azurewebsites.net/actuator/health |
 | 🚀 **Projeto no Azure DevOps** | Organização PetGuardian / Sprint 4 – Azure DevOps | https://dev.azure.com/PetGuardian/Sprint%204%20%E2%80%93%20Azure%20DevOps |
 | 💻 **Repositório GitHub (DevOps)** | Repositório com IaC e esteira de CI/CD | https://github.com/Challenge-Pet-Guardian-4/DevOps-Tools-Cloud-Computing |
-| ☕ **Repositório GitHub (Java Advanced)** | Código-fonte da aplicação Spring Boot e 123 testes | https://github.com/Challenge-Pet-Guardian-4/Java-Advanced |
+| ☕ **Repositório GitHub (Java Advanced)** | Código-fonte da aplicação Spring Boot e 292 testes | https://github.com/Challenge-Pet-Guardian-4/Java-Advanced |
 | 📄 **Documentação Oficial (PDF)** | Relatório técnico consolidado da Sprint 4 (DevOps & Cloud) | [Documentação DevOps Sprint 4 - Pet Guardian.pdf](./docs/Documenta%C3%A7%C3%A3o%20DevOps%20Sprint%204%20-%20Pet%20Guardian.pdf) |
 
 ---
@@ -106,7 +106,7 @@ O diagrama a seguir detalha a jornada de ponta a ponta, conectando as personas (
  │   │       `call gradlew.bat clean test bootJar --no-daemon`                 │   │
  │   │                                                                         │   │
  │   │   [4] Execução da Suíte de Testes Automatizados:                        │   │
- │   │       123 Testes de Integração e Unidade (JUnit 5 + Mockito)            │   │
+ │   │       292 Testes de Integração e Unidade (JUnit 5 + Mockito)            │   │
  │   │                                                                         │   │
  │   │   [5] Publicação de Resultados de Testes:                               │   │
  │   │       `PublishTestResults@2` -> Relatório XML no Azure DevOps           │   │
@@ -160,7 +160,7 @@ O diagrama a seguir detalha a jornada de ponta a ponta, conectando as personas (
 1. **Gatilho de Código (`git push`):** O desenvolvedor envia novos commits para a branch monitorada (`main`).
 2. **Disparo Automático do CI:** O Azure DevOps detecta a alteração via webhook e inicia imediatamente a execução da pipeline `azure-pipelines.yml`.
 3. **Inicialização do Agente Self-Hosted:** O agente local (registrado no pool `Default`) aloca a execução do job `Compilação Gradle e Testes` em ambiente com JDK 21 e Gradle Wrapper.
-4. **Execução de Build e Testes:** O comando `gradlew.bat clean test bootJar` compila o código-fonte, gera as chaves assimétricas RSA dinamicamente e executa **123 testes JUnit** cobrindo segurança RBAC, regras de negócio e integração de banco de dados.
+4. **Execução de Build e Testes:** O comando `gradlew.bat clean test bootJar` compila o código-fonte, gera as chaves assimétricas RSA dinamicamente e executa **292 testes JUnit** cobrindo segurança RBAC, regras de negócio e integração de banco de dados.
 5. **Publicação dos Testes:** A tarefa `PublishTestResults@2` lê os arquivos XML gerados em `build/test-results/test/TEST-*.xml` e publica a aba interativa de testes no Azure DevOps.
 6. **Publicação do Artefato:** A tarefa `PublishBuildArtifacts@1` copia o arquivo binário compilado `app.jar` para a área de staging e disponibiliza o artefato nomeado `drop`.
 7. **Disparo do Estágio CD:** Condicionado ao sucesso de 100% dos testes do estágio de CI, o estágio de CD (`Deploy para Azure Web App`) é iniciado automaticamente.
@@ -243,7 +243,7 @@ Para assegurar nota máxima sem sofrer os descontos previstos na tabela de penal
 | **3** | IDE (Código da Aplicação) | Fazer uma alteração simples e visível no código Java (ex: alterar a descrição de uma rota no Swagger ou adicionar um log visível). | *Alteração efetuada em código* |
 | **4** | Terminal / Git | Executar `git add .`, `git commit -m "feat: alteracao demonstrativa video"` e `git push`. Mostrar no Azure DevOps o disparo automático da esteira. | *Disparo automático em push na branch* |
 | **5** | Azure DevOps > Run da Pipeline | Abrir os logs em tempo real e comentar cada etapa: compilação Gradle, execução dos testes, geração do artefato e deploy no Web App. | *Explicação de cada etapa do CI/CD* |
-| **6** | Azure DevOps > Testes e Artefatos | Mostrar a aba **Tests** com os **123 testes JUnit aprovados** (100% de sucesso) e a aba de **Artifacts** com o pacote `drop/app.jar` publicado. | *Evidência de testes e artefato publicado* |
+| **6** | Azure DevOps > Testes e Artefatos | Mostrar a aba **Tests** com os **292 testes JUnit aprovados** (100% de sucesso) e a aba de **Artifacts** com o pacote `drop/app.jar` publicado. | *Evidência de testes e artefato publicado* |
 | **7** | Portal do Azure | Abrir o Web App `app-petguardian-01bd2f0c`, mostrar status `Running`, o plano `asp-petguardian` e o histórico de deploy atualizado pelo Azure DevOps. | *Recursos atualizados pelo deploy no Azure* |
 | **8** | Navegador (Swagger UI em Produção) | Acessar `https://app-petguardian-01bd2f0c.azurewebsites.net/swagger-ui/index.html` e demonstrar as operações do **CRUD completo** (Cadastro de Usuário, Consulta, Atualização e Exclusão). | *Execução do CRUD na nuvem* |
 | **9** | Cliente SQL (DBeaver / SQL Developer) | Executar `SELECT * FROM TB_USUARIO WHERE ...` diretamente no Oracle da FIAP comprovando que o dado foi persistido e refletido no banco. | *Evidência de persistência via SELECT* |
