@@ -246,7 +246,7 @@ Para assegurar nota máxima sem sofrer os descontos previstos na tabela de penal
 | **6** | Azure DevOps > Testes e Artefatos | Mostrar a aba **Tests** com os **292 testes JUnit aprovados** (100% de sucesso) e a aba de **Artifacts** com o pacote `drop/app.jar` publicado. | *Evidência de testes e artefato publicado* |
 | **7** | Portal do Azure | Abrir o Web App `app-petguardian-01bd2f0c`, mostrar status `Running`, o plano `asp-petguardian` e o histórico de deploy atualizado pelo Azure DevOps. | *Recursos atualizados pelo deploy no Azure* |
 | **8** | Navegador (Swagger UI em Produção) | Acessar `https://app-petguardian-01bd2f0c.azurewebsites.net/swagger-ui/index.html` e demonstrar as operações do **CRUD completo** (Cadastro de Usuário, Consulta, Atualização e Exclusão). | *Execução do CRUD na nuvem* |
-| **9** | Cliente SQL (DBeaver / SQL Developer) | Executar `SELECT * FROM TB_USUARIO WHERE ...` diretamente no Oracle da FIAP comprovando que o dado foi persistido e refletido no banco. | *Evidência de persistência via SELECT* |
+| **9** | Cliente SQL (DBeaver / SQL Developer) | Executar `SELECT * FROM usuario WHERE ...` diretamente no Oracle da FIAP comprovando que o dado foi persistido e refletido no banco. | *Evidência de persistência via SELECT* |
 
 ---
 
