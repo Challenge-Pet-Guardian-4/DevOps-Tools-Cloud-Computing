@@ -27,11 +27,11 @@ echo "  Azure Web App:    $WEB_APP_NAME (Runtime Java 21)"
 echo "================================================================="
 
 # -----------------------------------------------------------------------------
-# 1. Limpeza Prévia (Opcional - apaga o RG anterior se já existir)
+# 1. Limpeza Prévia (Opcional - apaga o RG anterior se passado --clean)
 # -----------------------------------------------------------------------------
-if [ "$(az group exists --name "$RESOURCE_GROUP" 2>/dev/null)" = "true" ]; then
+if [ "$1" = "--clean" ] && [ "$(az group exists --name "$RESOURCE_GROUP" 2>/dev/null)" = "true" ]; then
   echo ""
-  echo "🧹 [LIMPEZA] Resource Group $RESOURCE_GROUP anterior detectado. Apagando..."
+  echo "🧹 [LIMPEZA] Parâmetro --clean detectado. Apagando Resource Group $RESOURCE_GROUP anterior..."
   az group delete --name "$RESOURCE_GROUP" --yes
   echo "✅ Resource Group anterior removido com sucesso."
 fi
